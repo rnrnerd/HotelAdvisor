@@ -1,6 +1,9 @@
-
 class HomeController < ApplicationController
   def index
-    redirect_to hotels_path
+    @hotels = Hotel.all
+  end
+
+  def profile
+    @user = User.find(params[:id])
   end
 end

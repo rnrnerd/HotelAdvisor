@@ -1,0 +1,17 @@
+= link_to 'Назад', hotels_path
+%h1 Редактировать запись
+= simple_form_for @hotel, :html => { :multipart => true } do |f|
+    = f.error_notification
+    %div.form-inputs
+        = f.hidden_field :user_id
+        = f.input :title, label: 'Название', required: true, autofocus: true
+        = f.input :star_rating, label: 'Рейтинг', required: true
+        = f.input :breakfast_included, label: 'Есть завтрак', required: true
+        = f.input :room_description, label: 'Описание комнаты', as: :text, required: true
+        = f.input :price_for_room, label: 'Цена за сутки', required: true
+        = f.input :address, label: 'Адрес',required: true
+        = f.file_field :photo, label: 'Изображение'
+        = f.hidden_field :photo_cache
+        = image_tag(@hotel.photo_url) if @hotel.photo?
+    %div.form-actions
+        = f.button :submit, 'Сохранить'

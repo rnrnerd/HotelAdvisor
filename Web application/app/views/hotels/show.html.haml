@@ -1,0 +1,10 @@
+= link_to 'Назад', hotels_path
+%h1
+    Название: #{@hotel.title}
+%h2
+    Рейтинг: #{@hotel.star_rating}
+%h2
+    Адрес: #{@hotel.address}
+- if !@hotel.photo.file.nil?
+    = image_tag(@hotel.photo_url) if @hotel.photo?
+
