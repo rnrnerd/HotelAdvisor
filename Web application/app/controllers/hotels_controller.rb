@@ -14,15 +14,21 @@ class HotelsController < ApplicationController
   end
 
   def create
-    @hotel = Hotel.new(permitted_params)
-
+    @hotel = Hotel.new(params[:hotel])
     if @hotel.save
+      flash[:notice] = ""
       redirect_to hotels_path
     else
       render :new
     end
   end
-
+  @user = User.new(params[:user])
+  if @user.save
+    flash[:notice] = "Successfully created user."
+    redirect_to @user
+  else
+    render :action => 'new'
+  end
   def edit
     @hotel = Hotel.find(params[:id])
   end
@@ -42,12 +48,5 @@ class HotelsController < ApplicationController
     hotel.destroy
 
     redirect_to hotels_path
-  end
-
-  private
-  def permitted_params
-    params.require(:hotel).permit(:title, :star_rating,
-                                  :breakfast_included, :room_description,
-                                  :price_for_room, :address)
   end
 end
