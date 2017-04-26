@@ -1,5 +1,6 @@
-
 class HotelsController < ApplicationController
+  before_filter :authenticate_user!, :except => [:index, :show]
+
   def index
     @hotels = Hotel.all
   end
@@ -13,7 +14,7 @@ class HotelsController < ApplicationController
   end
 
   def create
-    @hotel = Hotel.new permitted_params
+    @hotel = Hotel.new(permitted_params)
 
     if @hotel.save
       redirect_to hotels_path

@@ -1,9 +1,0 @@
-<% if user_signed_in? %>
-    <span>Здравствуйте, <%= current_user.email %></span>
-    <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
-    <h1>Title: <%= @hotel.title %></h1>
-    <h2>Star rating: <%= @hotel.star_rating  %></h2>
-    <h2>Address: <%= @hotel.address %></h2>
-<% else %>
-    <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
-<% end %>

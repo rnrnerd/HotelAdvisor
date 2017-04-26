@@ -29,7 +29,7 @@ gem 'haml' #для работы с haml
 gem 'carrierwave', '~> 1.0' #для загрузки картинок
 gem 'mini_magick' #мин и макс размер картинки
 gem 'devise' #для регистрации пользователей
-gem 'active_model_serializers', '~> 0.10.0' #для сериализации объектов
+gem 'active_model_serializers' #для сериализации объектов
 
 
 
