@@ -1,0 +1,17 @@
+= link_to 'Назад', hotels_path
+%h1 Название: #{@hotel.title}
+%h2
+  - if user_signed_in?
+    Рейтинг: #{rating_for @hotel, 'star_rating', disable_after_rate: true, enable_half: true}
+%h2 Адрес: #{@hotel.address}
+- if !@hotel.photo.file.nil?
+  = image_tag(@hotel.photo_url) if @hotel.photo?
+- if user_signed_in?
+  = simple_form_for @review do |f|
+    %div.form-inputs
+      = f.hidden_field :user_id, :value => current_user.id
+      = f.hidden_field :hotel_id, :value => @hotel.id
+      = f.input :text, label: 'Текст отзыва', as: :text, required: true, autofocus: true
+    = button_tag 'Добавить', id: 'add_review_btn', data: { ajax_path: new_review_path }
+%div#reviews_list{data: { ajax_path: reviews_path }}
+= button_tag 'Загрузить', id: 'load_review_list_btn', data: { page_num: 1 }
