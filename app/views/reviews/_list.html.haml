@@ -1,0 +1,8 @@
+- if @reviews.blank?
+  %h3 Пока нет комментариев
+- else
+  - @reviews.each do |review|
+    %p
+      = review.text
+    %p
+      = review.created_at
